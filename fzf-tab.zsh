@@ -367,7 +367,7 @@ toggle-fzf-tab() {
 
 build-fzf-tab-module() {
   {
-    pushd -q $FZF_TAB_HOME/modules
+    pushd -q "$FZF_TAB_HOME/modules"
     if -ftb-build-module $@; then
       print -P "%F{green}%BThe module has been built successfully. Please restart zsh to apply it.%f%b"
     else
@@ -399,11 +399,11 @@ typeset -ga _ftb_group_colors=(
 () {
   emulate -L zsh -o extended_glob
 
-  if (( ! $fpath[(I)$FZF_TAB_HOME/lib] )); then
-    fpath+=($FZF_TAB_HOME/lib)
+  if (( ! $fpath[(I)"$FZF_TAB_HOME/lib"] )); then
+    fpath+=("$FZF_TAB_HOME/lib")
   fi
 
-  autoload -Uz is-at-least -- $FZF_TAB_HOME/lib/-#ftb*(:t)
+  autoload -Uz is-at-least -- "$FZF_TAB_HOME"/lib/-#ftb*(:t)
 
   if (( $+FZF_TAB_COMMAND || $+FZF_TAB_OPTS || $+FZF_TAB_QUERY || $+FZF_TAB_SINGLE_GROUP || $+fzf_tab_preview_init )) \
        || zstyle -m ":fzf-tab:*" command '*' \
@@ -412,7 +412,7 @@ typeset -ga _ftb_group_colors=(
           "See https://github.com/Aloxaf/fzf-tab/pull/132 for more information%f%b"
   fi
 
-  if [[ -n $FZF_TAB_HOME/modules/Src/aloxaf/fzftab.(so|bundle)(#qN) ]]; then
+  if [[ -n "$FZF_TAB_HOME"/modules/Src/aloxaf/fzftab.(so|bundle)(#qN) ]]; then
     module_path+=("$FZF_TAB_HOME/modules/Src")
     zmodload aloxaf/fzftab
 

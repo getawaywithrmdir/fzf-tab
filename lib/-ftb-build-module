@@ -27,4 +27,4 @@ cd -q ./zsh/$zsh_version
 make -j$nproc
 
 # we only need aloxaf/fzftab.so
-mv ./Src/Modules/fzftab.(so|bundle) $FZF_TAB_HOME/modules/Src/aloxaf/
+mv ./Src/Modules/fzftab.(so|bundle) "$FZF_TAB_HOME/modules/Src/aloxaf/"
